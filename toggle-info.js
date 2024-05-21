@@ -17,6 +17,17 @@ class ToggleInfo extends HTMLElement {
         this._toggleButton = this.shadowRoot.querySelector('button');
         this._infoBox = this.shadowRoot.querySelector('#info-box');
         this._toggleButton.addEventListener('click', this._toggleInfoBox.bind(this))
+        this._toggleButton.style.borderRadius = '15px';
+    }
+
+    connectedCallback() {
+        if (this.hasAttribute('is-visible')) {
+            if (this.getAttribute('is-visible') === 'true') {
+                this._isVisible = true;
+                this._infoBox.style.display = 'block';
+                this._toggleButton.textContent ='Hide';
+            }
+        }
     }
     _toggleInfoBox() {
         this._isVisible = !this._isVisible;
